@@ -11,6 +11,7 @@ jobs:
 - job: 'Test'
   pool:
     vmImage: 'windows-2019'
+  
   strategy:
     matrix:
       Python310:
@@ -26,8 +27,12 @@ jobs:
   - script: pip install robotframework robotframework-seleniumlibrary && npm install chromedriver
     displayName: 'Install dependencies'
   
-  - powershell: robot --pythonpath . -x outputxunit.xml TestCases.robot
-    displayName: 'Run Robot Scripts'
+  - powershell: |
+     Write-Host "Robot Framework tests"
+     robot --pythonpath . -x outputxunit.xml TestCases.robot
+     failOnStderr: true
+    displayName: 'Run Robot Framework Tests'
+    continueOnError: true
   - task: PublishTestResults@2
     inputs:
       testResultsFiles: outputxunit.xml
