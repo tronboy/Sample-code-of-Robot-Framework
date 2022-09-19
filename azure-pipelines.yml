@@ -30,9 +30,9 @@ jobs:
   - powershell: |
      Write-Host "Robot Framework tests"
      robot --pythonpath . -x outputxunit.xml TestCases.robot
-     failOnStderr: true
     displayName: 'Run Robot Framework Tests'
     continueOnError: true
+    
   - task: PublishTestResults@2
     inputs:
       testResultsFiles: outputxunit.xml
