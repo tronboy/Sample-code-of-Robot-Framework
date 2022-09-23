@@ -29,7 +29,7 @@ jobs:
   
   - powershell: |
      Write-Host "Robot Framework tests"
-     robot --pythonpath . -x outputxunit.xml TestCase.robot
+     robot --pythonpath . -x outputxunit.xml TestCases.robot
     displayName: 'Run Robot Framework Tests'
     continueOnError: true
     
